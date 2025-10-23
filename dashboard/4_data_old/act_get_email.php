@@ -16,21 +16,16 @@ if ($jwt === null) {
     }
 
     // get data post
-    $id = $_POST['id'];
-    $statuse = $_POST['statuse'];
     $username = $user['username'];
 
-    if ($statuse === 'pengeluaran') {
-        $query = "DELETE FROM t_outcome WHERE id = :id";
+    // update the theme in t_auth table for the given username
+    $stmt = $connect->prepare("SELECT c_email FROM t_auth WHERE c_username = :username");
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($result) {
+        echo $result['c_email'];
     } else {
-        $query = "DELETE FROM t_income WHERE id = :id";
-    }
-
-    $stmt = $connect->prepare($query);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    if ($stmt->execute()) {
-        echo "success";
-    } else {
-        echo "error";
+        echo "";
     }
 }

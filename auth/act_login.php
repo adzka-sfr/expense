@@ -1,9 +1,15 @@
 <?php
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/duit/config/connect.php'; // local
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/duit/assets/jwt/vendor/autoload.php'; // local
+// Auto-detect if running on localhost or domain
+$is_localhost = in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1', '::1']) ||
+    strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/connect.php'; // hosting
-require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/jwt/vendor/autoload.php'; // hosting
+if ($is_localhost) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/expense/config/connect.php'; // local
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/expense/assets/jwt/vendor/autoload.php'; // local
+} else {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/connect.php'; // hosting
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/jwt/vendor/autoload.php'; // hosting
+}
 
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
@@ -23,10 +29,14 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($user) {
     // Verify the password
     if (password_verify($password, $user['c_password'])) {
+        if ($is_localhost) {
+            $iss = "http://localhost/expense"; // local
+        } else {
+            $iss = "https://expense.adzkasfr.com/"; // hosting
+        }
         // Create the payload for the JWT
         $payload = [
-            // 'iss' => "http://localhost/duit", // local
-            'iss' => "https://duit.adzkasfr.com/", // hosting
+            'iss' => $iss,
             'iat' => time(),
             'exp' => time() + (30 * 24 * 60 * 60), // 30 days expiration
             'data' => [
@@ -41,8 +51,11 @@ if ($user) {
         $jwt = JWT::encode($payload, $key, 'HS256');
 
         // Set the JWT in a cookie
-        // setcookie("duit_token", $jwt, time() + (30 * 24 * 60 * 60), "/", "localhost", false, true); // local
-        setcookie("duit_token", $jwt, time() + (30 * 24 * 60 * 60), "/", "duit.adzkasfr.com", false, true); // hosting
+        if ($is_localhost) {
+            setcookie("expense_token", $jwt, time() + (30 * 24 * 60 * 60), "/", "localhost", false, true); // local
+        } else {
+            setcookie("expense_token", $jwt, time() + (30 * 24 * 60 * 60), "/", "expense.adzkasfr.com", false, true); // hosting
+        }
 
         // Redirect to the protected page
         echo "success";

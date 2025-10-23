@@ -1,18 +1,24 @@
 <?php
+// Auto-detect if running on localhost or domain
+$is_localhost = in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1', '::1']) ||
+    strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/duit/config/connect.php'; // local
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/connect.php'; // hosting
+if ($is_localhost) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/expense/config/connect.php'; // local
 
-// require $_SERVER['DOCUMENT_ROOT'] . '/duit/assets/PHPMailer/src/PHPMailer.php'; // local
-// require $_SERVER['DOCUMENT_ROOT'] . '/duit/assets/PHPMailer/src/Exception.php'; // local
-// require $_SERVER['DOCUMENT_ROOT'] . '/duit/assets/PHPMailer/src/SMTP.php'; // local
+    require $_SERVER['DOCUMENT_ROOT'] . '/expense/assets/PHPMailer/src/PHPMailer.php'; // local
+    require $_SERVER['DOCUMENT_ROOT'] . '/expense/assets/PHPMailer/src/Exception.php'; // local
+    require $_SERVER['DOCUMENT_ROOT'] . '/expense/assets/PHPMailer/src/SMTP.php'; // local
+} else {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/connect.php'; // hosting
 
-require $_SERVER['DOCUMENT_ROOT'] . '/assets/PHPMailer/src/PHPMailer.php'; // hosting
-require $_SERVER['DOCUMENT_ROOT'] . '/assets/PHPMailer/src/Exception.php'; // hosting
-require $_SERVER['DOCUMENT_ROOT'] . '/assets/PHPMailer/src/SMTP.php'; // hosting
+    require $_SERVER['DOCUMENT_ROOT'] . '/assets/PHPMailer/src/PHPMailer.php'; // hosting
+    require $_SERVER['DOCUMENT_ROOT'] . '/assets/PHPMailer/src/Exception.php'; // hosting
+    require $_SERVER['DOCUMENT_ROOT'] . '/assets/PHPMailer/src/SMTP.php'; // hosting
+}
 
 // get data post
 $email = $_POST['email'];
@@ -62,20 +68,20 @@ if (!$result) {
                 $mail->isSMTP();                                            // Send using SMTP
                 $mail->Host       = 'smtp.hostinger.com';                    // Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $mail->Username   = 'information_system@duit.adzkasfr.com';                     // SMTP username
+                $mail->Username   = 'information_system@expense.adzkasfr.com';                     // SMTP username
                 $mail->Password   = 'Alfianwai1!';                               // SMTP password
                 $mail->SMTPSecure = 'ssl';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                 $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
                 //Recipients
-                $mail->setFrom('information_system@duit.adzkasfr.com', 'TEAM DUIT');
+                $mail->setFrom('information_system@expense.adzkasfr.com', 'TEAM Expense');
                 $mail->addAddress($email);     // Add a recipient
-                $mail->addReplyTo("information_system@duit.adzkasfr.com", 'TEAM DUIT');
+                $mail->addReplyTo("information_system@expense.adzkasfr.com", 'TEAM Expense');
 
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Informasi Login DUIT';
-                $mail->Body    = 'Hallo, Semangat menabung !<br> Berikut akses ke <b>DUIT</b> kamu<br> Username : <b>' . $c_username . '</b></br> Password : <b>' . $new_password . '</b></br> </br> Mohon untuk tidak memberitahukan informasi tersebut kepada orang lain, dan segera ubah password anda!</br> Salam, <br><b>Adzka SFR (CEO DUIT)</b>';
+                $mail->Subject = 'Informasi Login Expense';
+                $mail->Body    = 'Hallo, Semangat menabung !<br> Berikut akses ke <b>Expense</b> kamu<br> Username : <b>' . $c_username . '</b></br> Password : <b>' . $new_password . '</b></br> </br> Mohon untuk tidak memberitahukan informasi tersebut kepada orang lain, dan segera ubah password anda!</br> Salam, <br><b>Adzka SFR (CEO Expense)</b>';
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
                 $mail->send();

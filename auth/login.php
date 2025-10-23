@@ -1,6 +1,6 @@
 <div class="card mt-5">
     <div class="card-header text-center">
-        <h4>Masuk ke Duit <sub style="font-size: 0.3em;">by Adzka</sub></h4>
+        <h4>Masuk ke Expense <sub style="font-size: 0.3em;">by Adzka</sub></h4>
     </div>
     <div class="card-body">
         <div class="form-group">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group text-center mt-3" style="font-size: 0.8em;">
-           Application Owner <br><a href="https://adzkasfr.com">Adzka SFR</a>
+            Application Owner <br><a href="https://adzkasfr.com">Adzka SFR</a>
         </div>
     </div>
 </div>

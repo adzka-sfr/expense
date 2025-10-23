@@ -15,22 +15,16 @@ if ($jwt === null) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/config/check_cookie.php'; // hosting
     }
 
-    // get data post
-    $id = $_POST['id'];
-    $statuse = $_POST['statuse'];
-    $username = $user['username'];
+    try {
+        $stmt = $connect->prepare("SELECT c_name, c_code FROM t_icon ORDER BY c_name ASC");
+        $stmt->execute();
+        $icons = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($statuse === 'pengeluaran') {
-        $query = "DELETE FROM t_outcome WHERE id = :id";
-    } else {
-        $query = "DELETE FROM t_income WHERE id = :id";
-    }
-
-    $stmt = $connect->prepare($query);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    if ($stmt->execute()) {
-        echo "success";
-    } else {
-        echo "error";
+        echo '<option value="">Select an icon</option>';
+        foreach ($icons as $icon) {
+            echo '<option value="' . htmlspecialchars($icon['c_code']) . '">' . htmlspecialchars($icon['c_name']) . '</option>';
+        }
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
     }
 }

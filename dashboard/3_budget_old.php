@@ -2,30 +2,20 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <h5 class="card-title">List up Category</h5>
+                <h5 class="card-title">Anggaran</h5>
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
-                <table class="table table-bordered">
-                    <thead style="text-align: center;">
-                        <tr>
-                            <th>Category</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Makan</td>
-                            <td>
-                                <input class="locng" id="locng-r" value="R" type="checkbox" style="transform: scale(2); margin: 20px;">
-                                <button class="btn btn-danger" type="button" title="Hapus">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12 text-right">
+                <input type="month" name="month" id="month" class="form-control" value="<?php echo date('Y-m'); ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-3" id="data-value-budget" style="display: none;">
+
+            </div>
+            <div class="col-12 mt-3 text-center" id="data-value-budget-loading">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
             </div>
         </div>
     </div>
@@ -76,6 +66,54 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-edit-anggaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Edit anggaran - <b id="month-label-edit"></b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kategori</label>
+                            <input type="text" name="budget-name" id="budget-name" class="form-control" disabled>
+                            <input type="hidden" name="budget-id" id="budget-id">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Nominal</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon3">Rp</span>
+                                <input type="number" disabled class="form-control" oninput="validateInputJustNumber(event)" id="nominal-budget-edit" aria-describedby="basic-addon3 basic-addon4">
+                            </div>
+                            <span id="error-nominal-budget-edit" style="color: #DC3545; display: none; font-size:0.7em"><i class="fa-solid fa-circle-info"></i> Nominal harus diisi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-danger btn-sm" id="delete-budget">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+                    Batal
+                </button>
+                <button type="button" id="save-budget-edit" class="btn btn-primary btn-sm">
+                    Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready(function() {

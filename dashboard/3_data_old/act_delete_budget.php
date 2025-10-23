@@ -17,20 +17,14 @@ if ($jwt === null) {
 
     // get data post
     $id = $_POST['id'];
-    $statuse = $_POST['statuse'];
-    $username = $user['username'];
 
-    if ($statuse === 'pengeluaran') {
-        $query = "DELETE FROM t_outcome WHERE id = :id";
-    } else {
-        $query = "DELETE FROM t_income WHERE id = :id";
-    }
-
-    $stmt = $connect->prepare($query);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    if ($stmt->execute()) {
+    // delete data
+    try {
+        $stmt = $connect->prepare("DELETE FROM t_budget WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
         echo "success";
-    } else {
-        echo "error";
+    } catch (PDOException $e) {
+        echo "error: " . $e->getMessage();
     }
 }

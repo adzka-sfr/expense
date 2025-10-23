@@ -1,9 +1,16 @@
 <?php
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/duit/config/connect.php'; // local
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/duit/assets/jwt/vendor/autoload.php'; // local
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/connect.php'; // hosting
-require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/jwt/vendor/autoload.php'; // hosting
+// Auto-detect if running on localhost or domain
+$is_localhost = in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1', '::1']) ||
+    strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0;
+
+if ($is_localhost) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/expense/config/connect.php'; // local
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/expense/assets/jwt/vendor/autoload.php'; // local
+} else {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/connect.php'; // hosting
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/jwt/vendor/autoload.php'; // hosting
+}
 
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
@@ -24,7 +31,7 @@ function getUserFromJwt($jwt, $key)
 }
 
 // Check if the JWT token exists in the cookie
-$jwt = $_COOKIE['duit_token'] ?? null;
+$jwt = $_COOKIE['expense_token'] ?? null;
 
 if ($jwt === null) {
     if (strpos($_SERVER['REQUEST_URI'], '/auth') === false) {

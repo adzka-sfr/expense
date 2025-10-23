@@ -22,12 +22,12 @@ include '../_header.php';
         </div>
         <div class="col text-center">
             <a href="main.php?page=customize" class="nav-link <?php echo ($_GET['page'] == 'customize') ? 'active' : ''; ?>" id="user-link" style="color: <?php echo $user['theme']; ?>;">
-                <i class="fa-solid fa-hammer"></i>
+                <i class="fa-solid fa-money-check-dollar"></i>
             </a>
         </div>
         <div class="col text-center">
             <a href="main.php?page=budget" class="nav-link <?php echo ($_GET['page'] == 'budget') ? 'active' : ''; ?>" id="settings-link" style="color: <?php echo $user['theme']; ?>;">
-                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <i class="fa-solid fa-hammer"></i>
             </a>
         </div>
         <div class="col text-center">
