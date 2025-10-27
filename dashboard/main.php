@@ -25,11 +25,11 @@ include '../_header.php';
                 <i class="fa-solid fa-money-check-dollar"></i>
             </a>
         </div>
-        <div class="col text-center">
+        <!-- <div class="col text-center">
             <a href="main.php?page=budget" class="nav-link <?php echo ($_GET['page'] == 'budget') ? 'active' : ''; ?>" id="settings-link" style="color: <?php echo $user['theme']; ?>;">
                 <i class="fa-solid fa-hammer"></i>
             </a>
-        </div>
+        </div> -->
         <div class="col text-center">
             <a href="main.php?page=settings" class="nav-link <?php echo ($_GET['page'] == 'settings') ? 'active' : ''; ?>" id="mail-link" style="color: <?php echo $user['theme']; ?>;">
                 <i class="fa-solid fa-gear"></i>

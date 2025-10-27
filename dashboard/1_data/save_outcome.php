@@ -16,28 +16,26 @@ if ($jwt === null) {
     }
 
     // Get data from POST request
+    $time = $_POST['time'] ?? null;
     $category = $_POST['category'] ?? null;
-    $methode = $_POST['methode'] ?? null;
     $nominal = $_POST['nominal'] ?? null;
     $detail = $_POST['detail'] ?? null;
-    $time = $_POST['time'] ?? null;
     $time = date('Y-m-d H:i:s', strtotime($time));
 
     $username = $user['username'];
 
     // Prepare SQL statement
-    $sql = "INSERT INTO t_outcome (c_category, c_payment, c_nominal, c_detail, c_datetime, c_username) 
-            VALUES (:category, :methode, :nominal, :detail, :timen, :username)";
+    $sql = "INSERT INTO t_outcome (c_category, c_nominal, c_detail, c_datetime, c_username) 
+            VALUES (:category, :nominal, :detail, :waktu, :username)";
 
     // Prepare the statement
     $stmt = $connect->prepare($sql);
 
     // Bind parameters
     $stmt->bindParam(':category', $category, PDO::PARAM_INT);
-    $stmt->bindParam(':methode', $methode, PDO::PARAM_INT);
     $stmt->bindParam(':nominal', $nominal, PDO::PARAM_STR);
     $stmt->bindParam(':detail', $detail, PDO::PARAM_STR);
-    $stmt->bindParam(':timen', $time, PDO::PARAM_STR);
+    $stmt->bindParam(':waktu', $time, PDO::PARAM_STR);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
 
     // Execute the statement

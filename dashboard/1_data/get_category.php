@@ -15,16 +15,10 @@ if ($jwt === null) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/config/check_cookie.php'; // hosting
     }
 
-    // get data post
-    $type = $_POST['type'];
-
     $username = $user['username'];
-    $status = 'active';
 
-    $stmt = $connect->prepare("SELECT id, c_name FROM t_category WHERE c_username = :username AND c_type = :type AND c_status = :statuse");
+    $stmt = $connect->prepare("SELECT id, c_name FROM t_category WHERE c_username = :username");
     $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':type', $type);
-    $stmt->bindParam(':statuse', $status);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
