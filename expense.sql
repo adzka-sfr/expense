@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2025 at 09:35 AM
+-- Generation Time: Oct 27, 2025 at 09:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,10 +72,18 @@ CREATE TABLE `t_category` (
   `id` int(11) NOT NULL,
   `c_name` varchar(100) DEFAULT NULL COMMENT 'Transportasi Makan dll',
   `c_username` varchar(100) DEFAULT NULL,
-  `c_datetime` datetime DEFAULT NULL,
-  `c_status` varchar(100) DEFAULT NULL,
   `c_icon` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `t_category`
+--
+
+INSERT INTO `t_category` (`id`, `c_name`, `c_username`, `c_icon`) VALUES
+(29, 'Makan', 'adzka', 'fa-solid fa-utensils'),
+(30, 'BBM', 'adzka', 'fa-solid fa-gas-pump'),
+(31, 'Rokok', 'adzka', 'fa-solid fa-smoking'),
+(32, 'Air', 'adzka', 'fa-solid fa-water');
 
 -- --------------------------------------------------------
 
@@ -255,34 +263,24 @@ INSERT INTO `t_icon` (`id`, `c_name`, `c_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_income`
---
-
-CREATE TABLE `t_income` (
-  `id` int(11) NOT NULL,
-  `c_payment` int(11) DEFAULT NULL,
-  `c_nominal` decimal(15,0) DEFAULT NULL,
-  `c_detail` text DEFAULT NULL,
-  `c_datetime` datetime DEFAULT NULL,
-  `c_username` varchar(100) DEFAULT NULL,
-  `c_category` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `t_outcome`
 --
 
 CREATE TABLE `t_outcome` (
   `id` int(11) NOT NULL,
   `c_category` int(11) DEFAULT NULL,
-  `c_payment` int(11) DEFAULT NULL,
   `c_nominal` decimal(15,0) DEFAULT NULL,
   `c_detail` text DEFAULT NULL,
   `c_datetime` datetime DEFAULT NULL,
   `c_username` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `t_outcome`
+--
+
+INSERT INTO `t_outcome` (`id`, `c_category`, `c_nominal`, `c_detail`, `c_datetime`, `c_username`) VALUES
+(23, 29, 9000, 'warteg', '2025-10-27 15:44:00', 'adzka');
 
 -- --------------------------------------------------------
 
@@ -305,10 +303,6 @@ CREATE TABLE `t_payment` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_balance` (
-`c_payment` int(11)
-,`c_payment_name` varchar(100)
-,`c_username` varchar(100)
-,`c_total` decimal(38,0)
 );
 
 -- --------------------------------------------------------
@@ -318,11 +312,6 @@ CREATE TABLE `v_balance` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_balance_comparison` (
-`c_username` varchar(100)
-,`this_month` varchar(7)
-,`last_month_balance` decimal(38,0)
-,`this_month_balance` decimal(38,0)
-,`c_difference` decimal(39,0)
 );
 
 -- --------------------------------------------------------
@@ -361,11 +350,6 @@ CREATE TABLE `v_category_outcome_monthly` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_monthly_balance` (
-`c_month` varchar(7)
-,`c_username` varchar(100)
-,`c_total_income` decimal(37,0)
-,`c_total_outcome` decimal(37,0)
-,`c_balance` decimal(38,0)
 );
 
 -- --------------------------------------------------------
@@ -375,18 +359,6 @@ CREATE TABLE `v_monthly_balance` (
 -- (See below for the actual view)
 --
 CREATE TABLE `v_transaction` (
-`c_date` date
-,`c_datetime` datetime
-,`id` int(11)
-,`c_username` varchar(100)
-,`c_detail` mediumtext
-,`c_nominal` decimal(15,0)
-,`c_category_id` int(11)
-,`c_category_name` varchar(100)
-,`c_payment_id` int(11)
-,`c_payment_name` varchar(100)
-,`c_category_icon` varchar(100)
-,`c_status` varchar(11)
 );
 
 -- --------------------------------------------------------
@@ -472,12 +444,6 @@ ALTER TABLE `t_icon`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `t_income`
---
-ALTER TABLE `t_income`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `t_outcome`
 --
 ALTER TABLE `t_outcome`
@@ -509,7 +475,7 @@ ALTER TABLE `t_budget`
 -- AUTO_INCREMENT for table `t_category`
 --
 ALTER TABLE `t_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `t_icon`
@@ -518,16 +484,10 @@ ALTER TABLE `t_icon`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
--- AUTO_INCREMENT for table `t_income`
---
-ALTER TABLE `t_income`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
-
---
 -- AUTO_INCREMENT for table `t_outcome`
 --
 ALTER TABLE `t_outcome`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `t_payment`
