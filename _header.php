@@ -21,7 +21,8 @@ $themeColor = isset($user['theme']) ? $user['theme'] : '#007bff'; // Default to 
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>Expense</title>
     <link rel="icon" href="<?php echo base_url('assets/images/robot_face.png'); ?>" type="image/png">
     <!-- Bootstrap CSS -->
