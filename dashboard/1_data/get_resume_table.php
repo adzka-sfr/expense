@@ -37,7 +37,7 @@ if ($jwt === null) {
         exit();
     }
 ?>
-    <table>
+    <table style="font-size: 0.7em;">
         <?php foreach ($transactions as $transaction):
             $percentage = ($transaction['c_total'] / $total_nominal) * 100;
         ?>

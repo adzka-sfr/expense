@@ -22,7 +22,7 @@ if ($user) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duit</title>
+    <title>Expense</title>
     <link rel="icon" href="<?php echo base_url('assets/images/robot_face.png'); ?>" type="image/png">
 
     <!-- Bootstrap CSS -->

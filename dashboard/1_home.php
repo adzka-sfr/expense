@@ -22,7 +22,7 @@
 </div>
 
 
-<div class="card mb-4 card-floating" style="padding-left: 0px; padding-right: 0px; position:fixed; bottom: 20px;  ">
+<div class="card mb-4 card-floating" style="padding-left: 0px; padding-right: 0px; position:fixed; bottom: 20px; width: 100%; ">
     <div class="card-body">
         <div class="row">
             <div class="col-12 text-center">
@@ -52,7 +52,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nominal</label>
-                    <input class="form-control form-control-sm" type="text" name="nominal" id="nominal" oninput="validateInputJustNumber(event);">
+                    <input class="form-control form-control-sm" type="number" name="nominal" id="nominal" oninput="validateInputJustNumber(event);">
                     <span id="error-nominal" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
                 </div>
             </div>
