@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="col-12" id="data-transaction" style="padding-left: 0px; padding-right: 0px;">
+<div class="col-12" id="data-transaction" style="padding-left: 0px; padding-right: 0px; font-size: 0.7em;">
 </div>
 
 <script>
