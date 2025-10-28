@@ -108,6 +108,7 @@
 
     // function when button save expense clicked
     $('#save-expense').click(function() {
+
         var todayDate = $('#today-date').val();
         var category = $('#category').val();
         var nominal = $('#nominal').val();
@@ -151,6 +152,8 @@
         if (hasError) {
             return;
         }
+
+        $('#save-expense').prop('disabled', true);
         // if no error, submit form via ajax
         $.ajax({
             url: '1_data/save_outcome.php',
@@ -175,6 +178,7 @@
                     $('#category').val('').trigger('change');
                     $('#nominal').val('');
                     $('#detail').val('');
+                    $('#save-expense').prop('disabled', false);
                     getDataTransaction();
                     getResumeSpend();
                     getDataPercentage();
@@ -182,6 +186,7 @@
                     $('#label-fail').show();
                     $('#label-success').hide();
                     // close after 3 seconds
+                    $('#save-expense').prop('disabled', false);
                     setTimeout(function() {
                         $('#label-fail').hide();
                     }, 3000);
