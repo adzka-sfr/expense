@@ -17,7 +17,7 @@ if ($is_localhost) {
     // Database connection parameters
     $host = 'localhost';  // hosting
     $dbname = 'u266480338_expense'; // hosting
-    $username = 'u266480338_bismillahadzka';  // hosting
+    $username = 'u266480338_octamonica';  // hosting
     $password = 'Alfianwai1';  // hosting
 }
 
