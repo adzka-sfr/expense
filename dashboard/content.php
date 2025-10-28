@@ -1,8 +1,8 @@
 <?php
 if ($_GET['page'] == 'home') {
     include '1_home.php';
-} elseif ($_GET['page'] == 'customize') {
-    include '2_customize.php';
+} elseif ($_GET['page'] == 'history') {
+    include '2_history.php';
 } elseif ($_GET['page'] == 'budget') {
     include '3_budget.php';
 } elseif ($_GET['page'] == 'settings') {

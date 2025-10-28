@@ -21,8 +21,8 @@ include '../_header.php';
             </a>
         </div>
         <div class="col text-center">
-            <a href="main.php?page=customize" class="nav-link <?php echo ($_GET['page'] == 'customize') ? 'active' : ''; ?>" id="user-link" style="color: <?php echo $user['theme']; ?>;">
-                <i class="fa-solid fa-money-check-dollar"></i>
+            <a href="main.php?page=history" class="nav-link <?php echo ($_GET['page'] == 'history') ? 'active' : ''; ?>" id="user-link" style="color: <?php echo $user['theme']; ?>;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
             </a>
         </div>
         <!-- <div class="col text-center">
@@ -30,16 +30,16 @@ include '../_header.php';
                 <i class="fa-solid fa-hammer"></i>
             </a>
         </div> -->
-        <div class="col text-center">
+        <!-- <div class="col text-center">
             <a href="main.php?page=settings" class="nav-link <?php echo ($_GET['page'] == 'settings') ? 'active' : ''; ?>" id="mail-link" style="color: <?php echo $user['theme']; ?>;">
                 <i class="fa-solid fa-gear"></i>
             </a>
-        </div>
-        <div class="col text-center">
+        </div> -->
+        <!-- <div class="col text-center">
             <a href="main.php?page=info" class="nav-link <?php echo ($_GET['page'] == 'info') ? 'active' : ''; ?>" id="mail-link" style="color: <?php echo $user['theme']; ?>;">
                 <i class="fa-solid fa-circle-info"></i>
             </a>
-        </div>
+        </div> -->
         <div class="col text-center">
             <a class="nav-link" id="logout-link" style="color: <?php echo $user['theme']; ?>;"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
