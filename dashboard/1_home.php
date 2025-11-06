@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<button class="btn btn-primary btn-floating" id="add-data" style="position: fixed; bottom: 80px; right: 20px;">
+<button class="btn btn-primary btn-lg btn-floating" id="add-data" style="position: fixed; bottom: 80px; right: 20px;">
     <i class="fa fa-plus"></i>
 </button>
 
