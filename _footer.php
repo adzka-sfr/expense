@@ -55,7 +55,8 @@
     $('.search-biasa').select2({
         placeholder: "Pilih salah satu",
         allowClear: false,
-        language: "id"
+        language: "id",
+        dropdownParent: $('#modal-tambah-transaksi')
     });
 
     // function to limit the input just number

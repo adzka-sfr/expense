@@ -21,56 +21,82 @@
 <div class="col-12" id="data-transaction" style="padding-left: 0px; padding-right: 0px; font-size: 0.7em;">
 </div>
 
+<div class="modal fade" id="modal-tambah-transaksi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Tambah Transaksi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <span id="label-success" class="text-success" style="display: none;"><i class="fa-solid fa-clipboard-check"></i> Data berhasil disimpan!!!</span>
+                        <span id="label-fail" class="text-danger" style="display: none;"><i class="fa-solid fa-square-xmark"></i> Data gagal disimpan!!!</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tanggal</label>
+                            <input class="form-control form-control-sm" type="datetime-local" name="today-date" id="today-date">
+                            <span id="error-today-date" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kategori</label>
+                            <select class="search-biasa" style="width: 100%;" name="category" id="category">
+                            </select>
+                            <span id="error-category" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
+                        </div>
 
-<div class="card mb-4 card-floating" style="padding-left: 0px; padding-right: 0px; position:fixed; bottom: 20px; width: 100%; ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nominal</label>
+                            <input class="form-control form-control-sm" type="number" name="nominal" id="nominal" oninput="validateInputJustNumber(event);">
+                            <span id="error-nominal" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Detail</label>
+                            <input class="form-control form-control-sm" type="text" name="detail" id="detail">
+                            <span id="error-detail" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" id="save-expense">
+                    Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-primary btn-floating" id="add-data" style="position: fixed; bottom: 80px; right: 20px;">
+    <i class="fa fa-plus"></i>
+</button>
+
+<!-- <div class="card mb-4 card-floating" style="padding-left: 0px; padding-right: 0px; position:fixed; bottom: 20px; width: 100%; ">
     <div class="card-body">
-        <div class="row">
-            <div class="col-12 text-center">
-                <span id="label-success" class="text-success" style="display: none;"><i class="fa-solid fa-clipboard-check"></i> Data berhasil disimpan!!!</span>
-                <span id="label-fail" class="text-danger" style="display: none;"><i class="fa-solid fa-square-xmark"></i> Data gagal disimpan!!!</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal</label>
-                    <input class="form-control form-control-sm" type="datetime-local" name="today-date" id="today-date">
-                    <span id="error-today-date" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Kategori</label>
-                    <select class="search-biasa" style="width: 100%;" name="category" id="category">
-                    </select>
-                    <span id="error-category" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
-                </div>
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nominal</label>
-                    <input class="form-control form-control-sm" type="number" name="nominal" id="nominal" oninput="validateInputJustNumber(event);">
-                    <span id="error-nominal" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Detail</label>
-                    <input class="form-control form-control-sm" type="text" name="detail" id="detail">
-                    <span id="error-detail" style="color: #DC3545; display: none;"><i class="fa-solid fa-circle-info"></i> Harus isi</span>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-12 mt-2">
                 <button class="btn btn-primary btn-sm btn-block" id="save-expense" style="width: 100%;">Simpan</button>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <script>
     // document ready
     $(document).ready(function() {
@@ -81,6 +107,11 @@
         getDataTransaction();
         getResumeSpend();
         getDataPercentage();
+    });
+
+    // function to open modal by floating button
+    $('#add-data').click(function() {
+        $('#modal-tambah-transaksi').modal('show');
     });
 
     // function to get current date and time
@@ -182,6 +213,14 @@
                     getDataTransaction();
                     getResumeSpend();
                     getDataPercentage();
+                    $('#modal-tambah-transaksi').modal('hide');
+                    Swal.fire({
+                        title: 'Berhasil',
+                        text: 'Data berhasil disimpan',
+                        icon: 'success',
+                        timer: 1000,
+                        showConfirmButton: false
+                    });
                 } else {
                     $('#label-fail').show();
                     $('#label-success').hide();
